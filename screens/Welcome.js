@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text, Button} from 'react-native';
 export default class Welcome extends Component {
-  // static navigationOptions = {
-  //   title: 'Welcome',
-  // };
   static navigationOptions = ({navigation}) => {
     return {
       title: navigation.getParam('otherParam', 'A Nested Details Screen'),
