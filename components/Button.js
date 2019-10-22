@@ -40,14 +40,9 @@ export default class Button extends Component {
         </TouchableOpacity>
       );
     }
-    const shadowOption = {
-      radius: 50,
-      x: 0,
-      y: 2,
-      opacity: 0.1,
-    };
+    const shadowOption = {color: '#000'};
     return (
-      <BoxShadow width="2">
+      <BoxShadow setting={shadowOption}>
         <TouchableOpacity
           style={buttonStyles}
           {...props}
