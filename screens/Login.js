@@ -1,10 +1,16 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, Button, Alert} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Alert,
+  TextInput,
+  KeyboardAvoidingView,
+} from 'react-native';
+import {Button} from './../components';
+import {theme} from './../constants';
 
 export default class Login extends Component {
-  static navigationOptions = {
-    title: 'Login',
-  };
   constructor(props) {
     super(props);
   }
@@ -17,11 +23,23 @@ export default class Login extends Component {
     ]);
   }
   render() {
+    const {navigation} = this.props;
     return (
-      <View style={styles.container}>
-        <Text>Login</Text>
-        <Button onPress={() => Alert.alert()} title="Test Alert" />
-      </View>
+      <KeyboardAvoidingView style={{flex: 1}}>
+        <View style={styles.container}>
+          <Text style={styles.title}>Login</Text>
+          <View style={styles.content}>
+            <TextInput placeholder="Email" />
+            <TextInput placeholder="Password" />
+            <Button gradient onPress={() => navigation.navigate('Login')}>
+              <Text style={{color: 'white', fontSize: 16}}>Login</Text>
+            </Button>
+            <Button>
+              <Text>Forget your password?</Text>
+            </Button>
+          </View>
+        </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -29,7 +47,15 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    paddingHorizontal: theme.sizes.base * 2,
+    paddingVertical: 0,
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: '500',
+  },
+  content: {
+    flex: 1,
+    paddingTop: theme.sizes.base * 2.5,
   },
 });

@@ -14,7 +14,7 @@ export default class Button extends Component {
         StyleSheet.create({
           container: {
             backgroundColor: '#fff',
-            elevation: 3,
+            elevation: 1,
             borderRadius: 5,
           },
         }),
@@ -35,19 +35,21 @@ export default class Button extends Component {
     const buttonStyles = [styles.button, style];
     if (gradient) {
       return (
-        <TouchableOpacity
-          style={buttonStyles}
-          activeOpacity={opacity || 0.8}
-          {...props}>
-          <LinearGradient
-            locations={locations}
-            colors={[startColor, endColor]}
+        <View style={[shadowStyle.container, buttonStyles]}>
+          <TouchableOpacity
             style={buttonStyles}
-            start={start}
-            end={end}>
-            {children}
-          </LinearGradient>
-        </TouchableOpacity>
+            activeOpacity={opacity || 0.8}
+            {...props}>
+            <LinearGradient
+              locations={locations}
+              colors={[startColor, endColor]}
+              style={buttonStyles}
+              start={start}
+              end={end}>
+              {children}
+            </LinearGradient>
+          </TouchableOpacity>
+        </View>
       );
     }
     return (

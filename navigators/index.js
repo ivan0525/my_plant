@@ -11,6 +11,7 @@ const AppNavigator = createStackNavigator(
     Login,
   },
   {
+    // initialRouteName: 'Login',
     defaultNavigationOptions: {
       headerBackTitle: null,
       headerStyle: {
