@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity, Platform, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {BoxShadow} from 'react-native-shadow';
 import {theme} from './../constants';
 
 export default class Button extends Component {
@@ -9,6 +8,17 @@ export default class Button extends Component {
     super(props);
   }
   render() {
+    const shadowStyle = Platform.select({
+      ios: () => StyleSheet.create({}),
+      android: () =>
+        StyleSheet.create({
+          container: {
+            backgroundColor: '#fff',
+            elevation: 3,
+            borderRadius: 5,
+          },
+        }),
+    })();
     const {
       style,
       gradient,
@@ -22,7 +32,7 @@ export default class Button extends Component {
       shadow,
       ...props
     } = this.props;
-    const buttonStyles = [styles.button, shadow && styles.shadow, style];
+    const buttonStyles = [styles.button, style];
     if (gradient) {
       return (
         <TouchableOpacity
@@ -40,16 +50,15 @@ export default class Button extends Component {
         </TouchableOpacity>
       );
     }
-    const shadowOption = {color: '#000'};
     return (
-      <BoxShadow setting={shadowOption}>
+      <View style={[shadowStyle.container, buttonStyles]}>
         <TouchableOpacity
-          style={buttonStyles}
+          style={[buttonStyles]}
           {...props}
           activeOpacity={opacity || 0.8}>
           {children}
         </TouchableOpacity>
-      </BoxShadow>
+      </View>
     );
   }
 }

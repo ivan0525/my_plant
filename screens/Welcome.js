@@ -28,7 +28,6 @@ export default class Welcome extends Component {
         showsHorizontalScrollIndicator={false}
         scrollEventThrottle={16}
         snapToAlignment="center"
-        indicatorStyle="black"
         keyExtractor={item => `${item.id}`}
         renderItem={({item}) => (
           <Image source={item.source} resizeMode="contain" style={styles.img} />
@@ -49,15 +48,9 @@ export default class Welcome extends Component {
 
   renderIndicator() {
     const {illustration} = this.props;
-    const stepPosition = Animated.divide(this.scrollX, width);
     return (
       <View style={styles.indicators}>
         {illustration.map((item, index) => {
-          const opacity = stepPosition.interpolate({
-            inputRange: [index - 1, index, index + 1],
-            outputRange: [0.4, 1, 0.4],
-            extrapolate: 'clamp',
-          });
           return <View style={styles.steps} key={`step-${index}`} />;
         })}
       </View>
