@@ -8,11 +8,21 @@ import {
   Animated,
   Dimensions,
 } from 'react-native';
-import {Button} from './../components';
+import {Button} from '../components';
 import {theme} from '../constants';
 const {width, height} = Dimensions.get('window');
-export default class Welcome extends Component {
-  constructor(props) {
+
+export interface Props {
+  readonly [key: string]: any;
+}
+
+export interface IllustrationItem {
+  id: number;
+  source: any;
+}
+export default class Welcome extends Component<Props> {
+  static defaultProps: {illustration: IllustrationItem[]};
+  constructor(props: Props) {
     super(props);
   }
   scrollX = new Animated.Value(0);
@@ -28,8 +38,8 @@ export default class Welcome extends Component {
         showsHorizontalScrollIndicator={false}
         scrollEventThrottle={16}
         snapToAlignment="center"
-        keyExtractor={item => `${item.id}`}
-        renderItem={({item}) => (
+        keyExtractor={(item: IllustrationItem) => `${item.id}`}
+        renderItem={({item}: any) => (
           <Image source={item.source} resizeMode="contain" style={styles.img} />
         )}
         onScroll={Animated.event(
@@ -50,7 +60,7 @@ export default class Welcome extends Component {
     const {illustration} = this.props;
     return (
       <View style={styles.indicators}>
-        {illustration.map((item, index) => {
+        {illustration.map((item: IllustrationItem, index: number) => {
           return <View style={styles.steps} key={`step-${index}`} />;
         })}
       </View>
@@ -108,6 +118,7 @@ const styles = StyleSheet.create({
   primary: {
     color: '#0AC4BA',
   },
+  desc: {},
   slider: {
     justifyContent: 'center',
     alignItems: 'center',

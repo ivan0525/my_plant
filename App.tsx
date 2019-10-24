@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import Navigators from './navigators';
+import Navigators from './navigators/index';
 export default class App extends Component {
   render() {
     return <Navigators />;

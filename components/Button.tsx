@@ -1,14 +1,31 @@
 import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity, Platform, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {theme} from './../constants';
+import {theme} from '../constants';
 
-export default class Button extends Component {
-  constructor(props) {
+export interface Props {
+  readonly [key: string]: any;
+}
+export interface ShadowStyle {
+  [key: string]: any;
+}
+
+export default class Button extends Component<Props> {
+  static defaultProps: {
+    startColor: string;
+    endColor: string;
+    start: {x: number; y: number};
+    end: {x: number; y: number};
+    locations: number[];
+    opacity: number;
+    color: string;
+  };
+
+  constructor(props: Props) {
     super(props);
   }
   render() {
-    const shadowStyle = Platform.select({
+    const shadowStyle: ShadowStyle = Platform.select({
       ios: () => StyleSheet.create({}),
       android: () =>
         StyleSheet.create({

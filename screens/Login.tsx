@@ -7,11 +7,15 @@ import {
   TextInput,
   KeyboardAvoidingView,
 } from 'react-native';
-import {Button} from './../components';
-import {theme} from './../constants';
+import {Button} from '../components';
+import {theme} from '../constants';
 
-export default class Login extends Component {
-  constructor(props) {
+export interface Props {
+  [key: string]: any;
+}
+
+export default class Login extends Component<Props> {
+  constructor(props: Props) {
     super(props);
   }
   handleAlert() {
