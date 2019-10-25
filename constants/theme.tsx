@@ -1,4 +1,5 @@
 const colors = {
+  error: '#f3534a',
   primary: '#0ac4ba',
   secondary: '#2bda8e',
   white: '#fff',

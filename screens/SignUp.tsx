@@ -2,45 +2,30 @@ import React, {Component} from 'react';
 import {
   StyleSheet,
   View,
-  Alert,
-  TextInput,
+  Text,
   KeyboardAvoidingView,
+  TextInput,
 } from 'react-native';
-import {Button, Text} from '../components';
+import {Button} from './../components';
 import {theme} from '../constants';
-
 export interface Props {
-  [key: string]: any;
+  readonly [key: string]: any;
 }
 
-export default class Login extends Component<Props> {
+export default class SignUp extends Component<Props> {
   constructor(props: Props) {
     super(props);
   }
-  handleAlert() {
-    Alert.alert('Alert title', 'my alert', [
-      {
-        text: 'Ask me later',
-        onPress: () => console.log('Ask me later pressed'),
-      },
-    ]);
-  }
   render() {
-    const {navigation} = this.props;
     return (
       <KeyboardAvoidingView style={{flex: 1}}>
         <View style={styles.container}>
-          <Text style={styles.title}>Login</Text>
+          <Text style={styles.title}>SignUp</Text>
           <View style={styles.content}>
             <TextInput placeholder="Email" />
             <TextInput placeholder="Password" />
-            <Button gradient onPress={() => navigation.navigate('Login')}>
-              <Text center white h2>
-                Login
-              </Text>
-            </Button>
-            <Button>
-              <Text center>Forget your password?</Text>
+            <Button gradient>
+              <Text>SignUp</Text>
             </Button>
           </View>
         </View>
@@ -61,6 +46,6 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    paddingTop: theme.sizes.base * 2.5,
+    paddingTop: theme.sizes.padding * 2.5,
   },
 });

@@ -4,11 +4,13 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {Image} from 'react-native';
 import Welcome from '../screens/Welcome';
 import Login from '../screens/Login';
+import SignUp from '../screens/SignUp';
 
 const AppNavigator = createStackNavigator(
   {
     Welcome,
     Login,
+    SignUp,
   },
   {
     defaultNavigationOptions: {

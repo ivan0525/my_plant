@@ -7,11 +7,23 @@ import {
   Image,
   Animated,
   Dimensions,
+  FlatList,
 } from 'react-native';
 import {Button} from '../components';
 import {theme} from '../constants';
 const {width, height} = Dimensions.get('window');
-
+// onScroll = {
+//   Animated.event(
+//     [
+//       {
+//         nativeEvent: { contentOffset: { x: this.scrollX } },
+//       },
+//     ],
+//     {
+//       useNativeDriver: true, // 启用原生动画驱动
+//     },
+//   )
+// }
 export interface Props {
   readonly [key: string]: any;
 }
@@ -26,11 +38,10 @@ export default class Welcome extends Component<Props> {
     super(props);
   }
   scrollX = new Animated.Value(0);
-
   renderIllustrations() {
     const {illustration} = this.props;
     return (
-      <Animated.FlatList
+      <FlatList
         horizontal
         pagingEnabled
         scrollEnabled
@@ -41,16 +52,6 @@ export default class Welcome extends Component<Props> {
         keyExtractor={(item: IllustrationItem) => `${item.id}`}
         renderItem={({item}: any) => (
           <Image source={item.source} resizeMode="contain" style={styles.img} />
-        )}
-        onScroll={Animated.event(
-          [
-            {
-              nativeEvent: {contentOffset: {x: this.scrollX}},
-            },
-          ],
-          {
-            useNativeDriver: true, // 启用原生动画驱动
-          },
         )}
       />
     );
@@ -83,10 +84,17 @@ export default class Welcome extends Component<Props> {
         </View>
         <View style={styles.bottom}>
           <Button gradient onPress={() => navigation.navigate('Login')}>
-            <Text style={{color: 'white', fontSize: 16}}>Login</Text>
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 16,
+                textAlign: 'center',
+              }}>
+              Login
+            </Text>
           </Button>
           <Button shadow onPress={() => navigation.navigate('SignUp')}>
-            <Text style={{fontSize: 16}}>SignUp</Text>
+            <Text style={{fontSize: 16, textAlign: 'center'}}>SignUp</Text>
           </Button>
         </View>
       </View>

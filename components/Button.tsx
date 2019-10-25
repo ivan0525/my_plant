@@ -95,8 +95,6 @@ const styles = StyleSheet.create({
     borderRadius: theme.sizes.radius,
     height: theme.sizes.base * 3,
     justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
     marginVertical: theme.sizes.padding / 3,
   },
   shadow: {
